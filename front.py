@@ -147,7 +147,7 @@ def predict_form():
         data['SocioCateg'] = request.form.get('socio_categ')
 
         try:
-            response = send_json(data)
+            response = redirect(url_for('predict', request=data))
             response = response.text
         except ConnectionError:
             response = json.dumps({"error": "ConnectionError"})
@@ -156,4 +156,4 @@ def predict_form():
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port='5000', debug=True)
+    app.run(debug=False)
