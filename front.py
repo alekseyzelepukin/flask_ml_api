@@ -14,11 +14,12 @@ import traceback
 from logging.handlers import RotatingFileHandler
 from time import strftime, time
 
+
 from process_data import process_input
 
 
 def send_json(data):
-    url = 'http://127.0.0.1:5000/predict'
+    url = 'http://localhost:5000/predict'
     headers = {'content-type': 'application/json'}
     response = requests.post(url, json=data, headers=headers)
     return response
@@ -147,7 +148,7 @@ def predict_form():
         data['SocioCateg'] = request.form.get('socio_categ')
 
         try:
-            response = redirect(url_for('predict', request=data))
+            response = send_json(data)
             response = response.text
         except ConnectionError:
             response = json.dumps({"error": "ConnectionError"})
@@ -156,4 +157,4 @@ def predict_form():
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(host='127.0.0.1', port='5000', debug=True)
