@@ -19,7 +19,7 @@ from process_data import process_input
 
 
 def send_json(data):
-    url = 'http://localhost:5000/predict'
+    url = 'http://127.0.0.1:5000/predict'
     headers = {'content-type': 'application/json'}
     response = requests.post(url, json=data, headers=headers)
     return response
@@ -156,4 +156,4 @@ def predict_form():
 
 
 if __name__ == '__main__':
-    app.run(host='localhost', port='5000', debug=True)
+    app.run(host='127.0.0.1', port='5000', debug=True)
