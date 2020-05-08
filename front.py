@@ -146,7 +146,6 @@ def predict_form():
         data['RiskArea'] = float(request.form.get('risk_area'))
         data['VehUsage'] = request.form.get('veh_usage')
         data['SocioCateg'] = request.form.get('socio_categ')
-
         try:
             response = send_json(data)
             response = response.text
